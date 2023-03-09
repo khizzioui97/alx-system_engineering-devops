@@ -1,2 +1,2 @@
 #!/bin/bash
-printf '%s\n' ./* | sed -e 's/^\.\//.\//' -e '/^\.\/\.\?$/d' | LC_ALL=C sort -df | awk '{printf "%s%s", NR>1?",":"",$0} END{print ""}'
+ls -xamp
