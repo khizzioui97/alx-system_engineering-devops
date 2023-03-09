@@ -1,0 +1,2 @@
+#!/bin/bash
+ls -p1a | LC_ALL=C sort -df | sed '$!s/$/,/' && echo
