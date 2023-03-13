@@ -1,2 +1,2 @@
-vi 102-acrostic
+#!/bin/bash
 cut -C 1 | paste -S -d"
