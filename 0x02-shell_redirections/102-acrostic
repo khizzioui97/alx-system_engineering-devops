@@ -1,0 +1,2 @@
+vi 102-acrostic
+cut -C 1 | paste -S -d"
