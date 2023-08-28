@@ -1,0 +1,57 @@
+**Three-Server Web Infrastructure Design for www.foobar.com:**
+
+1. **Load Balancer:**
+   - The infrastructure begins with a load balancer that distributes incoming traffic across three server instances.
+   - **Why:** Load balancers ensure high availability, distribute traffic evenly, and provide fault tolerance. If one server goes down, others can handle the load.
+
+2. **Firewalls:**
+   - Each server is equipped with a firewall to filter and control incoming and outgoing traffic.
+   - **Why:** Firewalls enhance security by preventing unauthorized access, protecting against malicious attacks, and limiting potential vulnerabilities.
+
+3. **SSL Certificate:**
+   - The SSL certificate is installed on the load balancer to enable HTTPS for secure communication.
+   - **Why:** SSL certificates encrypt data transmitted between clients and servers, ensuring data confidentiality and integrity.
+
+4. **Web Servers:**
+   - Three identical web server instances host the website's content and application logic.
+   - **Why:** Having multiple web servers improves performance and availability. If one server fails, others can still serve the website.
+
+5. **Application Servers:**
+   - These servers handle the application's business logic and interact with the database.
+   - **Why:** Separating application logic from the web server enhances scalability and allows for better resource utilization.
+
+6. **Database Servers:**
+   - A primary database server handles write operations, while others serve as replicas for read operations.
+   - **Why:** Having multiple database servers enhances read scalability and fault tolerance. Replication ensures data availability even if one server fails.
+
+7. **Replication:**
+   - MySQL replication is implemented to keep the database replicas synchronized with the primary server.
+   - **Why:** Replication provides data redundancy, improves read performance, and safeguards against data loss.
+
+8. **Monitoring Clients (Data Collectors):**
+   - Each server instance is equipped with a monitoring client that collects performance and health data.
+   - **Why:** Monitoring allows real-time visibility into server health, performance metrics, and potential issues, helping ensure uptime and efficient resource utilization.
+
+9. **Monitoring Tool:**
+   - Sumo Logic or another monitoring tool is used to collect, analyze, and visualize the data collected by monitoring clients.
+   - **Why:** Monitoring tools provide insights into infrastructure performance, help detect anomalies, and facilitate proactive issue resolution.
+
+10. **Web Server QPS Monitoring:**
+    - To monitor web server QPS (Queries Per Second), set up specific performance metrics for web servers and use the monitoring tool to track QPS over time.
+    - **Why:** Monitoring QPS helps assess server load, plan for scalability, and identify abnormal traffic patterns.
+
+**Issues with the Infrastructure:**
+
+1. **Terminating SSL at Load Balancer:**
+   - Issue: Terminating SSL at the load balancer means that the internal communication between the load balancer and backend servers may occur over an unencrypted channel.
+   - Solution: Implement end-to-end encryption by using SSL certificates on both the load balancer and backend servers.
+
+2. **Single MySQL Server for Writes:**
+   - Issue: Relying on a single MySQL server for write operations creates a single point of failure and potential performance bottlenecks.
+   - Solution: Implement a master-slave configuration with multiple write-capable servers to distribute write load and enhance fault tolerance.
+
+3. **Uniform Server Components:**
+   - Issue: Having identical components (database, web server, and application server) on all servers might lead to inefficient resource utilization and scalability challenges.
+   - Solution: Implement microservices architecture, where each server focuses on a specific role (e.g., web server, application server, database), allowing for better resource allocation and scalability.
+
+In conclusion, the designed infrastructure leverages load balancing, firewalls, encryption, redundancy, and monitoring to create a secure, scalable, and highly available web environment for www.foobar.com.

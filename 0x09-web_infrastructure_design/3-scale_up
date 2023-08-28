@@ -1,0 +1,39 @@
+Infrastructure Design:
+
+Load Balancer (HAProxy Cluster):
+
+Implement a load balancer using HAProxy configured as a cluster with redundancy.
+Why: Load balancers distribute incoming traffic to ensure high availability and fault tolerance. Using a cluster ensures continuous operation even if one load balancer fails.
+Web Server:
+
+Set up a dedicated web server to handle serving static content (HTML, CSS, images).
+Why: Separating the web server from the application server optimizes resource usage. It also simplifies maintenance, as web server tasks are distinct from application logic.
+Application Server:
+
+Configure a dedicated application server to handle dynamic processing, business logic, and communication with the database.
+Why: Isolating application logic from the web server allows for better scalability and easier updates. This separation also enhances security by limiting access to the database.
+Database Server:
+
+Utilize a separate server to host the database, which holds the website's data.
+Why: Isolating the database server improves data security, enables efficient resource allocation, and facilitates database-specific optimizations.
+Explanation of Each Component:
+
+Load Balancer (HAProxy Cluster): The load balancer ensures even distribution of incoming traffic across multiple application servers, improving availability and fault tolerance. A cluster configuration provides redundancy, ensuring uninterrupted service even if one load balancer goes down.
+
+Web Server: The web server handles static content delivery, such as HTML, CSS, and images. It offloads this responsibility from the application server, optimizing performance and resource utilization.
+
+Application Server: The application server processes dynamic requests, executes business logic, and communicates with the database. By separating it from the web server, you create a modular architecture that's easier to scale and maintain. Additionally, it enhances security by preventing direct database access from the web.
+
+Database Server: The database server stores and manages the website's data. Isolating it from the application and web servers ensures data security and allows for database-specific optimizations, contributing to better performance and scalability.
+
+Advantages of Splitting Components:
+
+Modularity: Splitting components into distinct servers allows for modular development, updates, and scaling. Each component can be managed independently, simplifying maintenance and troubleshooting.
+
+Resource Allocation: By dedicating separate servers to different tasks, you optimize resource allocation. For example, the database server can be tuned for data storage and retrieval, while application servers can focus on processing logic.
+
+Security: Separating the application server from the database server enhances security by limiting direct access to the database. This reduces the risk of data breaches and unauthorized access.
+
+Scalability: A modular architecture enables horizontal scaling by adding more instances of the required component. This supports increased traffic and user demands without affecting other parts of the infrastructure.
+
+In this design, the HAProxy cluster ensures efficient traffic distribution, while distinct servers for web, application, and database components provide modularity, resource optimization, and enhanced security.

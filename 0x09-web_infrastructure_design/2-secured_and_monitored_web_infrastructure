@@ -1,0 +1,56 @@
+
+**Whiteboard Design:**
+
+1. **Load Balancer:**
+   - Draw a box labeled "Load Balancer" at the top of the whiteboard.
+   - Add arrows pointing downward from the load balancer to the next components.
+
+2. **Firewall 1, 2, 3:**
+   - Draw three boxes labeled "Firewall 1," "Firewall 2," and "Firewall 3" beneath the load balancer.
+   - Connect arrows from the load balancer to each firewall.
+
+3. **SSL Certificate:**
+   - Draw a lock icon next to the load balancer and label it "SSL Certificate."
+
+4. **Web Server 1, 2, 3:**
+   - Draw three boxes labeled "Web Server 1," "Web Server 2," and "Web Server 3" beneath the firewalls.
+   - Connect arrows from each firewall to its corresponding web server.
+
+5. **Application Server 1, 2, 3:**
+   - Draw three boxes labeled "App Server 1," "App Server 2," and "App Server 3" beneath the web servers.
+   - Connect arrows from each web server to its corresponding application server.
+
+6. **Database Server (Primary) & Replicas:**
+   - Draw a box labeled "Primary DB Server" and connect it to the application servers.
+   - Draw boxes labeled "DB Replica 1" and "DB Replica 2" and connect them to the primary DB server.
+
+7. **Monitoring Clients 1, 2, 3:**
+   - Draw three small boxes near each component (firewalls, web servers, app servers, DB servers) and label them as "Monitoring Client 1," "Monitoring Client 2," and "Monitoring Client 3."
+   - Connect arrows from each component to its corresponding monitoring client.
+
+8. **Monitoring Tool:**
+   - Draw a box labeled "Monitoring Tool" on the side and connect it to all monitoring clients.
+
+**Explanation of Each Component:**
+
+- **Load Balancer:** Distributes incoming traffic among the web servers for load balancing and high availability.
+
+- **Firewalls:** Protect the infrastructure by filtering and controlling incoming and outgoing traffic. 
+
+- **SSL Certificate:** Enables HTTPS to secure data transmission between clients and the servers.
+
+- **Web Servers & Application Servers:** Host the website content and application logic, respectively, separated for better scalability and resource utilization.
+
+- **Primary DB Server & Replicas:** Primary server handles writes, replicas handle reads, ensuring data redundancy and improved performance.
+
+- **Monitoring Clients:** Collect performance data from each component for monitoring purposes.
+
+- **Monitoring Tool:** Collects and analyzes data from monitoring clients to ensure infrastructure health and performance.
+
+**Issues with the Infrastructure:**
+
+- **Terminating SSL at Load Balancer Level:** This could lead to unencrypted communication between the load balancer and backend servers, potentially exposing sensitive data.
+
+- **Single MySQL Server for Writes:** Relying on a single server for write operations creates a single point of failure and could impact performance during high write loads.
+
+- **Identical Server Components:** Servers with the same components might face resource inefficiencies as some components may be underutilized, hindering scalability and flexibility.
